@@ -1,14 +1,16 @@
 import { createContext, useContext, type ReactNode } from 'react'
 import type { CardProps } from '../types/Cards'
 import { useBoard } from '../hooks/useBoard'
+import type { ListProps } from '../types/Lists'
 
 // Define what the context provides
 interface BoardContextType {
-  lists: any[]
+  lists: ListProps[]
   addCardToList: (listId: number, newCard: CardProps) => void
   deleteCard: (listId: number, cardId: number) => void
   editCard: (listId: number, cardId: number, newTitle: string) => void
   moveCard: (initialList: number, newList: number, cardId: number) => void
+  addList: (newCard: ListProps) => void
 }
 
 // Create the contex
