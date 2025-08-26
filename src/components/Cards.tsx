@@ -14,7 +14,7 @@ const Card = ({
     const [isEditing, setIsEditing] = useState(false)
     const [editText, setEditText] = useState(title)
 
-    const { deleteCard, editCard, moveCard } = useBoardContext()
+    const { lists, deleteCard, editCard, moveCard } = useBoardContext()
 
     const handleEdit = () => {
         setIsEditing(!isEditing)
@@ -111,25 +111,15 @@ const Card = ({
                 <span className="px-4 text-gray-400">Move To</span>
                 <div className="flex-1 border-t-2 border-gray-500"></div>
             </div>
-            <div className="flex flex-row justify-between">
-                <button 
-                    className="border rounded p-2"
-                    onClick={() => handleMove(1)}
-                >
-                    To Do
-                </button>
-                <button 
-                    className="border rounded p-2"
-                    onClick={() => handleMove(2)}
-                >
-                    In Progress
-                </button>
-                <button 
-                    className="border rounded p-2"
-                    onClick={() => handleMove(3)}
-                >
-                    Done
-                </button>
+            <div className="flex flex-row justify-between gap-2">
+                {lists.map((list) => (
+                    <button key={list.id}
+                        className="border rounded p-2"
+                        onClick={() => handleMove(list.id)}
+                    >
+                        {list.category}
+                    </button>
+                ))}
             </div>
         </div>
     )
